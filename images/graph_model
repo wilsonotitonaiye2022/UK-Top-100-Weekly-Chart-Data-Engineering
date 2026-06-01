@@ -1,0 +1,28 @@
+// Data Model
+digraph {
+	graph [bgcolor=azure pad=0.5]
+	node [color=black fillcolor=azure3 shape=oval style=filled]
+	edge [labeldistance=20.0 penwidth=2]
+	Song [label="(:Song)
+* uniqueNo (unique_no): str | UNIQUE\l* title (song): str\l* duration (duration): int\l* deezerLink (deezer_link): str\l* peak (peak): int\l* firstWeekPosition (first_week_position): int\l* lastWeekDateOnChart (last_week_date_on_chart): DateTime\l* consecutiveWeeksOnChart (consecutive_weeks_on_chart): int\l* weeksOnChartTotal (weeks_on_chart_total): int\l"]
+	Artist [label="(:Artist)
+* mainArtist (main_artist): str | UNIQUE\l* totalSongs (total_songs_by_artist): int\l* averagePeakPosition (average_peak_position_by_artist): float\l* longestChartingSong (longest_charting_song_by_artist): str\l"]
+	CollaboratingArtist [label="(:CollaboratingArtist)
+* collaboratingArtist (collaborating_artist): str | UNIQUE\l"]
+	Genre [label="(:Genre)
+* genreName (genre): str | UNIQUE\l"]
+	Album [label="(:Album)
+* albumTitle (album): str | UNIQUE\l"]
+	ChartWeek [label="(:ChartWeek)
+* weekStart (start_of_week): DateTime | UNIQUE\l* weekEnd (end_of_week): DateTime\l* weekNumber (week_number): int\l* month (month): int\l* year (year): int\l* season (season): str\l"]
+	Song -> Artist [label="  [:PERFORMED_BY]  
+"]
+	Song -> CollaboratingArtist [label="  [:FEATURES]  
+"]
+	Song -> Genre [label="  [:BELONGS_TO]  
+"]
+	Song -> Album [label="  [:IN_ALBUM]  
+"]
+	Song -> ChartWeek [label="  [:CHART_ENTRY]  
+"]
+}
